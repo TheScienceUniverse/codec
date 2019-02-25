@@ -1,2 +1,2 @@
 # CoDec
-Codes for **coder-decoder** for different file formats
+Codes for **Coder-Decoder** for different file formats
