@@ -7,10 +7,12 @@
 <body>
 	<script>
 		// huffmanEncode("Hello, World!");
-		let x = huffmanEncode("abccacdeaccdeee");
-		console.log(x);
-		x = huffmanDecode("M00a010b11c011d10eD000101111001101110001111011101010");
-		console.log(x);
+		let x = "abccacdeaccdeee";
+		console.log("Original Message: " + x);
+		x = huffmanEncode(x);
+		console.log("Encoded Message: " + x);
+		x = huffmanDecode(x);
+		console.log("Decoded Message: " + x);
 		// document.write(findMin([3, 5, 1, 2, 1]));
 	</script>
 </body>

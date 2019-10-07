@@ -94,7 +94,6 @@ function huffmanDecode(msg) {
 	for (++i; i < msg.length; i++) {
 		p = root;
 		do {
-			console.log(i, msg[i]);
 			if (msg[i] == "0") {
 				p = p.childL;
 			} else if (msg[i] == "1") {
