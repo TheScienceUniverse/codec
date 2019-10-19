@@ -1,3 +1,3 @@
 # CoDec
 
-Library for Source-Coding OR Data-Compression
+Library for Source-Coding or Data-Compression
