@@ -39,12 +39,11 @@ function huffmanEncode(msg) {
 		S[i][2] = T[i][4];
 	}
 	// encoding the message
-	// var eMsg = "M";
-	var eMsg = "";
+	var eMsg = "M";
 	for (i = 0; i < S.length; i++) {
 		eMsg += S[i][2] + S[i][0];
 	}
-	// eMsg += "D";
+	eMsg += "D";
 	for (i = 0; i < msg.length; i++) {
 		for (j = 0; j < S.length; j++) {
 			if (msg[i] == S[j][0]) {
@@ -59,42 +58,56 @@ function huffmanEncode(msg) {
 function huffmanDecode(msg) {
 	var dMsg = "";
 	class node {
-		constructor(d, cl, cr) {
+		constructor(d, lc, rc) {
 			this.data = d;
-			this.childL = cl;
-			this.childR = cr;
+			// this.parent = p; => NOT REQUIRED
+			this.childL = lc;
+			this.childR = rc;
 		}
 	}
-
+	// creating symbol table
 	var root = new node(null, null, null);
-	let p = root;
-
-	for (var i = 0; i < msg.length; i++) {
-		if (msg[i] == "0") {
-			if (p.childL == null) {
-				p.childL = new node(null, null, null);
-			}
-			p = p.childL;
-		} else if (msg[i] == "1") {
-			if (p.childR == null) {
-				p.childR = new node(null, null, null);
-			}
-			p = p.childR;
-		} else {
-			p.data = msg[i];
-			p = root;
-		}
-
-		dMsg += (function (ch) {
-			if (ch != null) {
-				p = root;
-				return ch;
+	var i = 0;
+	if (msg[0] == "M") {
+		let p = root;
+		while (msg[++i] != "D") {
+			if (msg[i] == "0") {
+				if (p.childL == null) {
+					p.childL = new node(null, null, null);
+				}
+				p = p.childL;
+			} else if (msg[i] == "1") {
+				if (p.childR == null) {
+					p.childR = new node(null, null, null);
+				}
+				p = p.childR;
 			} else {
-				return "";
+				p.data = msg[i];
+				p = root;
 			}
-		})(p.data);
+		}
+	} else {
+		dMsg = "SORRY...CORRUPTED DATA";
 	}
-
+	console.log(root);
+	// decoding message
+	for (++i; i < msg.length; i++) {
+		p = root;
+		do {
+			if (msg[i] == "0") {
+				p = p.childL;
+			} else if (msg[i] == "1") {
+				p = p.childR;
+			}
+			++i;
+			if (i == msg.length) {
+				break;
+			}
+		} while (p.childL != null || p.childR != null);
+		dMsg += p.data;
+		--i;
+		p = root;
+	}
 	return dMsg;
 }
 
