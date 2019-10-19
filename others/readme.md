@@ -1,3 +1,3 @@
-# Cryptography
+# CoDec
 
-Library for other CoDecs
+Library for Source-Coding OR Data-Compression
