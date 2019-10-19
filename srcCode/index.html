@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Huffman CoDec</title>
+	<!--<script type="text/javascript" src="script_old.js"></script>-->
+	<script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+	<script>
+		// huffmanEncode("Hello, World!");
+		let x = "abccacdeaccdeee";
+		// let x = "Hello, World!";
+		console.log("Original Message: " + x);
+		x = huffmanEncode(x);
+		console.log("Encoded Message: " + x);
+		x = huffmanDecode(x);
+		console.log("Decoded Message: " + x);
+		// document.write(findMin([3, 5, 1, 2, 1]));
+	</script>
+</body>
+</html>
