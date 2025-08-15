@@ -1,0 +1,12 @@
+#rm -f ./bin/tst
+
+#gcc -Wall -L$(pwd)/DSA/lib -ldsa -o ./obj/base64.o -c ./src/base64.c
+#gcc -Wall -L$(pwd)/DSA/lib -ldsa -o ./obj/test_base64.o -c ./tst/base64.c
+#gcc -Wall -L$(pwd)/DSA/lib -ldsa -o ./bin/tst test.c ./obj/base64.o ./obj/test_base64.o
+
+tabs 4
+
+#LD_LIBRARY_PATH=./DSA/lib/:$LD_LIBRARY_PATH ./bin/tst
+
+make again
+make check
