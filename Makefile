@@ -15,7 +15,7 @@ LOGDIR = ./log
 COVDIR = ./cov
 BLDDIR = ./
 OPTIMIZATION = -O0
-OBJECT_NAMES = base64
+OBJECT_NAMES = base64 adler32
 OBJECTS := $(foreach f_name, $(OBJECT_NAMES), $(OBJDIR)/$(f_name).o)
 TSTECTS := $(foreach f_name, $(OBJECT_NAMES), $(OBJDIR)/test_$(f_name).o)
 EXECUTABLE := $(EXEDIR)/codec
@@ -68,6 +68,7 @@ again:
 check:
 	@tabs 4
 	@$(LIB_ENV_PARAM) $(TSTCUTABLE) | tee $(LOGDIR)/test.log
-	@$(LIB_ENV_PARAM) $(EXECUTABLE) -e -t "Hello"
-	@$(LIB_ENV_PARAM) $(EXECUTABLE) -d -t "SGVsbG8="
+	@$(LIB_ENV_PARAM) $(EXECUTABLE) -t "base64" -e "Hello"
+	@$(LIB_ENV_PARAM) $(EXECUTABLE) -t "base64" -d "SGVsbG8="
+	@$(LIB_ENV_PARAM) $(EXECUTABLE) -t "adler32" -e "Hello, World!"
 

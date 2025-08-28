@@ -21,4 +21,7 @@
 #include "./base64.h"
 void test_base64 (void);
 
+#include "./adler32.h"
+void test_adler32 (void);
+
 #endif // TEST_H

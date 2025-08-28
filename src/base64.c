@@ -1,6 +1,6 @@
 #include "../inc/base64.h"
 
-String* encode (String* plain_text) {
+String* encode_base64 (String* plain_text) {
 	if (NULL == plain_text) {
 		perror ("No input string is given to encode to base64!");
 		exit (EXIT_FAILURE);
@@ -98,7 +98,7 @@ String* encode (String* plain_text) {
 	return encoded_text;
 }
 
-String* decode (String* encoded_text) {
+String* decode_base64 (String* encoded_text) {
 	if (NULL == encoded_text) {
 		perror ("No input string is given to decode to base64!");
 		exit (EXIT_FAILURE);
