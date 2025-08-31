@@ -9,4 +9,10 @@ tabs 4
 #LD_LIBRARY_PATH=./DSA/lib/:$LD_LIBRARY_PATH ./bin/tst
 
 make again
-make check
+
+LD_LIBRARY_PATH=./DSA/lib/:$LD_LIBRARY_PATH ./bin/codec -t "base64" -e "Hello"
+LD_LIBRARY_PATH=./DSA/lib/:$LD_LIBRARY_PATH ./bin/codec -t "base64" -d "SGVsbG8="
+LD_LIBRARY_PATH=./DSA/lib/:$LD_LIBRARY_PATH ./bin/codec -t "adler32" -e "Hello, World!"
+LD_LIBRARY_PATH=./DSA/lib/:$LD_LIBRARY_PATH ./bin/codec -t "adler32" -e "1f9e046a"
+LD_LIBRARY_PATH=./DSA/lib/:$LD_LIBRARY_PATH ./bin/codec -t "adler32" -e "09d20231"
+

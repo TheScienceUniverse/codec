@@ -29,7 +29,7 @@ CFLAGS_COVERAGE = --coverage
 LIB_DSA := -L$(shell pwd)/DSA/lib/ -ldsa
 LIB_ENV_PARAM := LD_LIBRARY_PATH=./DSA/lib/:$$LD_LIBRARY_PATH
 
-all: $(EXECUTABLE) $(TSTCUTABLE)
+all: $(EXECUTABLE) $(TSTCUTABLE) $(LIBRARY)
 
 $(EXECUTABLE): $(OBJECTS)
 	@echo "-> Linking all object files and generating executable binary file ..."
@@ -52,6 +52,10 @@ $(OBJDIR)/test_%.o: $(TSTDIR)/%.c
 	@$(CC) $(CFLAGS) $(CFLAGS_EXTRA) $(CFLAGS_COVERAGE) -o $@ -c $^
 #	@echo "... Done!"
 #	@echo
+
+$(LIBRARY): $(OBJECTS)
+	@echo "-> Building library file ..."
+	@gcc $(CFLAGS) $(CFLAGS_EXTRA) -o $@ $^
 
 .PHONY: clean again check
 
