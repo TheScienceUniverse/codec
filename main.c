@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "./DSA/inc/string.h"
+#include "../DSA/inc/string.h"
 #include "./inc/base64.h"
 #include "./inc/adler32.h"
 
