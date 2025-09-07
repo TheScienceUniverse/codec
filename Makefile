@@ -26,25 +26,25 @@ LIBRARY := $(LIBDIR)/libcodec.so
 CFLAGS = -Wall -Wextra -g $(INCDIR) $(OPTIMIZATION)
 CFLAGS_EXTRA = -fPIC -shared -finput-charset=UTF-8# [1] position-indepedent-code, [2] shared object, [3] input character encoding UTF-8
 CFLAGS_COVERAGE = --coverage
-LIB_DSA := -L$(shell pwd)/DSA/lib/ -ldsa
-LIB_ENV_PARAM := LD_LIBRARY_PATH=./DSA/lib/:$$LD_LIBRARY_PATH
+LIB_DSA := -L$(shell pwd)/../DSA/lib/ -ldsa
+LIB_ENV_PARAM := LD_LIBRARY_PATH=../DSA/lib/:$$LD_LIBRARY_PATH
 
 all: $(EXECUTABLE) $(TSTCUTABLE) $(LIBRARY)
 
 $(EXECUTABLE): $(OBJECTS)
 	@echo "-> Linking all object files and generating executable binary file ..."
-	@$(CC) $(CFLAGS) $(LIB_DSA) -o $@ $^ ./main.c
+	@$(CC) $(CFLAGS) -o $@ $^ ./main.c $(LIB_DSA)
 	@chmod +x $(EXECUTABLE)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	@echo " + Compiling "$*" ..."
-	@$(CC) $(CFLAGS) $(CFLAGS_EXTRA) $(LIB_DSA) -o $@ -c $^
+	@$(CC) $(CFLAGS) $(CFLAGS_EXTRA) -o $@ -c $^ $(LIB_DSA)
 
 test: $(TSTCUTABLE)
 
 $(TSTCUTABLE): $(TSTECTS)
 	@echo "-> Linking all object files and generating test binary file ..."
-	@$(CC) $(CFLAGS) $(CFLAGS_COVERAGE) $(LIB_DSA) -o $@ ./test.c $(OBJECTS) $^
+	@$(CC) $(CFLAGS) $(CFLAGS_COVERAGE) -o $@ ./test.c $(OBJECTS) $^ $(LIB_DSA)
 	@chmod +x $(TSTCUTABLE)
 
 $(OBJDIR)/test_%.o: $(TSTDIR)/%.c

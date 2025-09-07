@@ -16,7 +16,9 @@ make clean
 make all
 
 echo "Cleaning up...";
-rm -rf ./DSA/
+mv ./DSA/inc/ ./tmp/
+rm -rf ./DSA/*
+mv ./tmp/ ./DSA/inc/
 rm -rf ./archive/
 rm -rf ./.git/ ./.github/ ./aft/ ./bin/ ./cov/ ./doc/ ./font/ ./log/ ./media/ ./obj/ ./src/ ./tst/
 rm -f .gitignore LICENSE
