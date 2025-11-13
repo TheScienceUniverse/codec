@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include "../DSA/inc/string.h"
+#include "../DSA/inc/mgc.h"
 #include "./inc/base64.h"
 #include "./inc/adler32.h"
 
@@ -35,7 +36,7 @@ int main (int argc, char* argv[]) {
 		}
 	}
 
-	String* input = create_string (strlen (argv [4]), argv [4]);
+	String* input = create_String (strlen (argv [4]), argv [4]);
 	String* output = NULL;
 
 	if (compare_raw_strings_shh (2, "-e", 2, argv [3])) {
@@ -45,7 +46,7 @@ int main (int argc, char* argv[]) {
 	}
 
 	if (P_Undefined != p_type) {
-		input = create_string (strlen (argv [4]), argv [4]);
+		input = create_String (strlen (argv [4]), argv [4]);
 	}
 
 	if (C_Base64 == c_type && P_Encoding == p_type) {
@@ -74,13 +75,13 @@ int main (int argc, char* argv[]) {
 	}
 */
 	printf ("[");
-	display_string (input);
+	display_String (input);
 	printf ("] -> [");
-	display_string (output);
+	display_String (output);
 	printf ("]\n");
 
-	delete_string (&output);
-	delete_string (&input);
+	delete_String (&output);
+	delete_String (&input);
 
 	return EXIT_SUCCESS;
 }

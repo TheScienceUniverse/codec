@@ -29,7 +29,7 @@ String* encode_base64 (String* plain_text) {
 
 	const char* dict = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-	String* encoded_text = create_string (4 * triplet_count, plain_text -> text);
+	String* encoded_text = create_String (4 * triplet_count, plain_text -> text);
 
 	if (NULL == encoded_text -> text) {
 		perror ("Unable to allocate memory for base64 encoding!");
@@ -125,7 +125,7 @@ String* decode_base64 (String* encoded_text) {
 
 	size_t orig_char_count = quadruplet_count * 3 - pad_count;
 
-	String* dict = create_string (0, NULL);
+	String* dict = create_String (0, NULL);
 	dict -> text = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 	dict -> length = 64;
 
@@ -134,7 +134,7 @@ String* decode_base64 (String* encoded_text) {
 
 	src_ptr = encoded_text -> text;
 
-	String* decoded_text = create_string (0, "");
+	String* decoded_text = create_String (0, "");
 	decoded_text -> text = malloc (orig_char_count * sizeof (char));
 
 	if (NULL == decoded_text -> text) {
@@ -177,7 +177,7 @@ String* decode_base64 (String* encoded_text) {
 
 	dict -> text = NULL;
 	dict -> length = 0;
-	delete_string (&dict);
+	delete_String (&dict);
 
 	return decoded_text;
 }

@@ -25,7 +25,7 @@ String* encode_adler32 (String* input) {
 
 	uint32_t checksum = (b << 16) + a;
 
-	String* checksum_string = create_string (8, "_--_");
+	String* checksum_string = create_String (8, "_--_");
 	char* y = checksum_string -> text;
 	x = (BYTE*)(&checksum);
 
